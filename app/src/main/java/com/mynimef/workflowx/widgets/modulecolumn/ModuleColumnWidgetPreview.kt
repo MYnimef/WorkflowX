@@ -9,11 +9,14 @@ import com.mynimef.workflowx.widgets.multilinetext.MultilineTextWidgetData
 @Composable
 private fun ModuleLazyColumnWidgetPreview() {
     val data = ModuleColumnWidgetData(
+        id = "0",
         widgets = listOf(
             MultilineTextWidgetData(
+                id = "1",
                 text = "что вы хотите знать"
             ),
             MultilineTextWidgetData(
+                id = "2",
                 text = "о прогнозной доходности"
             )
         )

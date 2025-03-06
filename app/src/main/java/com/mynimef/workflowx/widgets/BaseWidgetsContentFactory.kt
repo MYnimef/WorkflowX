@@ -10,8 +10,8 @@ import com.mynimef.workflowx.widgets.multilinetext.MultilineTextWidget
 import com.mynimef.workflowx.widgets.multilinetext.MultilineTextWidgetData
 import com.mynimef.workflowx.widgets.slider.SliderWidget
 import com.mynimef.workflowx.widgets.slider.SliderWidgetData
-import com.mynimef.workflowx.widgets.subscribestring.SubscribeStringWidget
-import com.mynimef.workflowx.widgets.subscribestring.SubscribeStringWidgetData
+import com.mynimef.workflowx.widgets.subscribe.SubscribeStringWidget
+import com.mynimef.workflowx.widgets.subscribe.SubscribeWidgetData
 
 /**
  *
@@ -60,7 +60,7 @@ open class BaseWidgetsContentFactory {
             modifier = modifier
         )
 
-        SubscribeStringWidgetData.TYPE -> SubscribeStringWidget(
+        SubscribeWidgetData.TYPE -> SubscribeStringWidget(
             contentFactory = this@BaseWidgetsContentFactory,
             dataProvider = provider(),
             onAction = onAction,

@@ -13,12 +13,14 @@ import com.mynimef.workflowx.widgets.BaseWidgetsContentFactory
 import com.mynimef.workflowx.widgets.modulecolumn.ModuleColumnWidgetData
 import com.mynimef.workflowx.widgets.multilinetext.MultilineTextWidgetData
 import com.mynimef.workflowx.widgets.slider.SliderWidgetData
-import com.mynimef.workflowx.widgets.subscribestring.SubscribeStringWidgetData
+import com.mynimef.workflowx.widgets.subscribe.SubscribeWidgetData
+import kotlinx.serialization.json.Json
 
 @Preview
 @Composable
 private fun BaseScreenPreview() {
-    var data by rememberSaveable { mutableStateOf(BaseScreenData(
+    var data by rememberSaveable { mutableStateOf(
+        BaseScreenData(
         backgroundColor = "#FF00FFFF",
         widgets = listOf(
             MultilineTextWidgetData(
@@ -30,19 +32,20 @@ private fun BaseScreenPreview() {
                 text = "о прогнозной доходности"
             ),
             ModuleColumnWidgetData(
+                id = "custom",
                 widgets = listOf(
                     MultilineTextWidgetData(
                         id = "3",
                         text = "о прогнозной доходности"
                     ),
-                    SubscribeStringWidgetData(
+                    SubscribeWidgetData(
                         id = "subscribe",
                         targets = listOf(
-                            SubscribeStringWidgetData.Target(id = "5", type = "string")
+                            SubscribeWidgetData.Target(id = "5", type = "string")
                         ),
                         widget = MultilineTextWidgetData(
                             id = "4",
-                            text = "или о чувашии"
+                            text = ""
                         )
                     )
                 )
@@ -56,7 +59,86 @@ private fun BaseScreenPreview() {
                 text = "о ком угодно"
             )
         )
-    )) }
+    )
+    ) }
+
+    BaseScreen(
+        contentFactory = BaseWidgetsContentFactory(),
+        dataProvider = { data },
+        modifier = Modifier.fillMaxSize(),
+        onAction = { when (it) {
+
+            is Action.ReplaceWidgetAction -> {
+                data = data.replaceWidgetById(id = it.id, widget = it.widget)
+            }
+
+        } },
+        widgetGetter = { id ->
+            data.findWidgetById(id)
+        }
+    )
+}
+
+@Preview
+@Composable
+private fun BaseScreenJsonPreview() {
+    val jsonStr = """
+{
+    "backgroundColor": "#FF00FFFF",
+    "widgets": [
+        {
+            "type": "MultilineTextWidget",
+            "id": "1",
+            "text": "что вы хотите знать"
+        },
+        {
+            "type": "MultilineTextWidget",
+            "id": "2",
+            "text": "о прогнозной доходности"
+        },
+        {
+            "type": "ModuleColumnWidget",
+            "id": "3",
+            "widgets": [
+                {
+                    "type": "MultilineTextWidget",
+                    "id": "4",
+                    "text": "о прогнозной доходности"
+                },
+                {
+                    "type": "SubscribeWidget",
+                    "id": "5",
+                    "targets": [
+                        {
+                            "id": "7",
+                            "type": "string"
+                        }
+                    ],
+                    "widget": {
+                        "type": "MultilineTextWidget",
+                        "id": "6",
+                        "text": ""
+                    }
+                }
+            ]
+        },
+        {
+            "type": "SliderWidget",
+            "id": "7",
+            "value": 0.25
+        },
+        {
+            "type": "MultilineTextWidget",
+            "id": "8",
+            "text": "о ком угодно"
+        }
+    ]
+}
+    """.trimIndent()
+
+    var data by rememberSaveable { mutableStateOf(
+        Json.decodeFromString<BaseScreenData>(jsonStr)
+    ) }
 
     BaseScreen(
         contentFactory = BaseWidgetsContentFactory(),

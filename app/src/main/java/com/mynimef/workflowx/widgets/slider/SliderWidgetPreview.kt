@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 private fun SliderWidgetPreview() {
     val data = SliderWidgetData(
+        id = "0",
         value = 0f
     )
     SliderWidget(

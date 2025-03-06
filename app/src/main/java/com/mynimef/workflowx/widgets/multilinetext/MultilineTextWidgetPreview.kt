@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 private fun MultilineTextWidgetPreview() {
     val data = MultilineTextWidgetData(
+        id = "2",
         text = "hi"
     )
     MultilineTextWidget(

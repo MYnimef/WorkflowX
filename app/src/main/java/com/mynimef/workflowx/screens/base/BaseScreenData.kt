@@ -3,7 +3,9 @@ package com.mynimef.workflowx.screens.base
 import android.os.Parcelable
 import com.mynimef.workflowx.widgets.BaseWidgetData
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Parcelize
 data class BaseScreenData(
     val backgroundColor: String,

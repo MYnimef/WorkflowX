@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "2.1.10"
 }
 
 android {
@@ -57,4 +58,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 }

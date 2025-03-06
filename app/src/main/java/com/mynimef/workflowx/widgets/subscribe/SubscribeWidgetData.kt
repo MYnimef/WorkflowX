@@ -1,14 +1,16 @@
-package com.mynimef.workflowx.widgets.subscribestring
+package com.mynimef.workflowx.widgets.subscribe
 
 import android.os.Parcelable
 import com.mynimef.workflowx.widgets.BaseWidgetData
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 /**
  *
  */
+@Serializable
 @Parcelize
-data class SubscribeStringWidgetData(
+data class SubscribeWidgetData(
     override val type: String = TYPE,
     override val id: String,
     val targets: List<Target>,
@@ -18,6 +20,7 @@ data class SubscribeStringWidgetData(
     /**
      *
      */
+    @Serializable
     @Parcelize
     data class Target(
         val id: String,
@@ -25,7 +28,7 @@ data class SubscribeStringWidgetData(
     ): Parcelable
 
     companion object {
-        const val TYPE = "SubscribeStringWidget"
+        const val TYPE = "SubscribeWidget"
     }
 
 }

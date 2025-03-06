@@ -1,4 +1,4 @@
-package com.mynimef.workflowx.widgets.subscribestring
+package com.mynimef.workflowx.widgets.subscribe
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -18,7 +18,7 @@ import com.mynimef.workflowx.widgets.StringObserver
 @Composable
 fun SubscribeStringWidget(
     contentFactory: BaseWidgetsContentFactory,
-    dataProvider: () -> SubscribeStringWidgetData,
+    dataProvider: () -> SubscribeWidgetData,
     onAction: (Action) -> Unit,
     widgetGetter: (String) -> BaseWidgetData?,
     modifier: Modifier = Modifier
