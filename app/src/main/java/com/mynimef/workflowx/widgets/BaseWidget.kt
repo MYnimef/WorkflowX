@@ -7,6 +7,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.mynimef.workflowx.Action
 
+/**
+ * Базовая [Composable] функция отображения виджета по [BaseWidgetData]
+ */
 @Composable
 fun BaseWidget(
     contentFactory: BaseWidgetsContentFactory,

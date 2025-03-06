@@ -1,13 +1,14 @@
 package com.mynimef.workflowx.widgets.modulecolumn
 
 import com.mynimef.workflowx.widgets.BaseWidgetData
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ModuleColumnWidgetData(
+    override val type: String = TYPE,
     override val id: String = "",
     val widgets: List<BaseWidgetData>
 ): BaseWidgetData {
-
-    override val type: String = TYPE
 
     override fun findWidgetById(id: String): BaseWidgetData? =
         super.findWidgetById(id) ?: widgets.find {

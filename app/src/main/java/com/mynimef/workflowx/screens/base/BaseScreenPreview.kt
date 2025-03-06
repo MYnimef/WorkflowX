@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,7 +18,7 @@ import com.mynimef.workflowx.widgets.subscribestring.SubscribeStringWidgetData
 @Preview
 @Composable
 private fun BaseScreenPreview() {
-    var data by remember { mutableStateOf(BaseScreenData(
+    var data by rememberSaveable { mutableStateOf(BaseScreenData(
         backgroundColor = "#FF00FFFF",
         widgets = listOf(
             MultilineTextWidgetData(
@@ -37,7 +37,9 @@ private fun BaseScreenPreview() {
                     ),
                     SubscribeStringWidgetData(
                         id = "subscribe",
-                        targetId = "5",
+                        targets = listOf(
+                            SubscribeStringWidgetData.Target(id = "5", type = "string")
+                        ),
                         widget = MultilineTextWidgetData(
                             id = "4",
                             text = "или о чувашии"

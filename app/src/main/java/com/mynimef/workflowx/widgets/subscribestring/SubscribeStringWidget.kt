@@ -12,6 +12,9 @@ import com.mynimef.workflowx.widgets.BaseWidgetsContentFactory
 import com.mynimef.workflowx.widgets.Observable
 import com.mynimef.workflowx.widgets.StringObserver
 
+/**
+ *
+ */
 @Composable
 fun SubscribeStringWidget(
     contentFactory: BaseWidgetsContentFactory,
@@ -22,9 +25,17 @@ fun SubscribeStringWidget(
 ) {
     val widgetData by remember { derivedStateOf {
         val data = dataProvider()
-        val observer = data.widget as? StringObserver
-        val observable = widgetGetter(data.targetId) as? Observable
-        observer?.update(observable?.getValue().toString()) ?: data.widget
+        var observer = data.widget
+        data.targets.forEach { target ->
+            when (target.type) {
+                "string" -> {
+                    val stringObserver = observer as? StringObserver
+                    val observable = widgetGetter(target.id) as? Observable
+                    observer = stringObserver?.update(observable?.getValue().toString()) ?: observer
+                }
+            }
+        }
+        observer
     } }
 
     BaseWidget(

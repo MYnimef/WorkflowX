@@ -10,6 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.mynimef.workflowx.Action
 
+/**
+ *
+ */
 @Composable
 fun BaseColumnWidget(
     contentFactory: BaseWidgetsContentFactory,
@@ -30,7 +33,7 @@ fun BaseColumnWidget(
             val widgetData by remember { derivedStateOf { widgetsProvider()[index] } }
             BaseWidget(
                 contentFactory = contentFactory,
-                dataProvider = remember { { widgetData } },
+                dataProvider = { widgetData },
                 onAction = onAction,
                 widgetGetter = widgetGetter
             )
