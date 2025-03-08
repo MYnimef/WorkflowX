@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "WorkflowX"
 include(":app")
+include(":WorkflowXCore")

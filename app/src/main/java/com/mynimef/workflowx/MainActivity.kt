@@ -5,13 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.mynimef.workflowx.ui.theme.WorkflowXTheme
+import com.mynimef.workflowxcore.CoreJsonDeserializer
+import com.mynimef.workflowxcore.screens.base.BaseScreen
+import com.mynimef.workflowxcore.screens.base.BaseScreenData
+import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +23,122 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WorkflowXTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                var data by rememberSaveable { mutableStateOf(
+                    CoreJsonDeserializer().run {
+                        deserialize<BaseScreenData>(jsonStr)
+                    }
+                ) }
+
+                BaseScreen(
+                    contentFactory = CoreWidgetFactoryComposable(),
+                    dataProvider = { data },
+                    modifier = Modifier.fillMaxSize(),
+                    onAction = { when (it) {
+
+                        is Action.ReplaceWidget -> {
+                            data = data.replaceWidgetById(id = it.id, widget = it.widget)
+                        }
+
+                    } },
+                    widgetGetter = { id ->
+                        data.findWidgetById(id)
+                    }
+                )
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+private val jsonStr = """
+{
+    "backgroundColor": "#FF00FFFF",
+    "widgets": [
+        {
+            "type": "SpacerWidget"
+            "id": "spacer:1",
+            "height": "8"
+        },
+        {
+            "type": "MultilineTextWidget",
+            "id": "1",
+            "text": "что вы хотите знать"
+        },
+        {
+            "type": "SpacerWidget"
+            "id": "spacer:2",
+            "height": "8"
+        },
+        {
+            "type": "MultilineTextWidget",
+            "id": "2",
+            "text": "о прогнозной доходности"
+        },
+        {
+            "type": "SpacerWidget"
+            "id": "spacer:3",
+            "height": "8"
+        },
+        {
+            "type": "ModuleColumnWidget",
+            "id": "3",
+            "widgets": [
+                {
+                    "type": "SpacerWidget"
+                    "id": "spacer:4",
+                    "height": "16"
+                },
+                {
+                    "type": "MultilineTextWidget",
+                    "id": "4",
+                    "text": "о прогнозной доходности"
+                },
+                {
+                    "type": "SpacerWidget"
+                    "id": "spacer:5",
+                    "height": "8"
+                },
+                {
+                    "type": "SubscribeWidget",
+                    "id": "5",
+                    "targets": [
+                        {
+                            "id": "7",
+                            "type": "string"
+                        }
+                    ],
+                    "widget": {
+                        "type": "MultilineTextWidget",
+                        "id": "6",
+                        "text": ""
+                    }
+                },
+                {
+                    "type": "SpacerWidget"
+                    "id": "spacer:6",
+                    "height": "16"
+                }
+            ]
+        },
+        {
+            "type": "SpacerWidget"
+            "id": "spacer:7",
+            "height": "8"
+        },
+        {
+            "type": "SliderWidget",
+            "id": "7",
+            "value": 0.25
+        },
+        {
+            "type": "SpacerWidget"
+            "id": "spacer:8",
+            "height": "8"
+        },
+        {
+            "type": "MultilineTextWidget",
+            "id": "8",
+            "text": "о ком угодно"
+        }
+    ]
 }
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    WorkflowXTheme {
-        Greeting("Android")
-    }
-}
+    """.trimIndent()
