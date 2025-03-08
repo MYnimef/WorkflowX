@@ -1,6 +1,6 @@
-package com.mynimef.workflowxcore.widgets.spacer
+package com.mynimef.workflowxcore.widgets.impl.spacer
 
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
@@ -13,7 +13,7 @@ import kotlinx.serialization.Transient
 data class SpacerWidgetData(
     override val id: String,
     val height: Float
-): CoreWidgetData {
+): CoreWidgetData.Single {
 
     @Transient
     @IgnoredOnParcel

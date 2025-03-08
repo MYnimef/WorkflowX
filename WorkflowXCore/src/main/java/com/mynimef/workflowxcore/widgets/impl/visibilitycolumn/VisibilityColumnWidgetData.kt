@@ -1,6 +1,6 @@
-package com.mynimef.workflowxcore.widgets.visibilitycolumn
+package com.mynimef.workflowxcore.widgets.impl.visibilitycolumn
 
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
@@ -13,12 +13,14 @@ import kotlinx.serialization.Transient
 data class VisibilityColumnWidgetData(
     override val id: String,
     val exp: String,
-    val widgets: List<CoreWidgetData>
-): CoreWidgetData {
+    override val widgets: List<CoreWidgetData>
+): CoreWidgetData.Collection {
 
     @Transient
     @IgnoredOnParcel
     override val type: String = TYPE
+
+    override fun copyWith(widgets: List<CoreWidgetData>) = copy(widgets = widgets)
 
     companion object {
         const val TYPE = "VisibilityColumnWidget"

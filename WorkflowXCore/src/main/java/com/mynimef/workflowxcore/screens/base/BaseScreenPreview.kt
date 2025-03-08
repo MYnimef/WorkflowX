@@ -8,13 +8,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
 import com.mynimef.workflowxcore.CoreJsonDeserializer
-import com.mynimef.workflowxcore.widgets.modulecolumn.ModuleColumnWidgetData
-import com.mynimef.workflowxcore.widgets.multilinetext.MultilineTextWidgetData
-import com.mynimef.workflowxcore.widgets.slider.SliderWidgetData
-import com.mynimef.workflowxcore.widgets.subscribe.SubscribeWidgetData
+import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleColumnWidgetData
+import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidgetData
+import com.mynimef.workflowxcore.widgets.impl.slider.SliderWidgetData
+import com.mynimef.workflowxcore.widgets.impl.subscribe.SubscribeWidgetData
 
 @Preview
 @Composable

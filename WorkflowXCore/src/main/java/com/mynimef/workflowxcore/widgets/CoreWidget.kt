@@ -5,9 +5,11 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.mynimef.workflowxcore.Action
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 /**
- * Базовая [Composable] функция отображения виджета по [CoreWidgetData]
+ * Базовая [Composable] функция отображения виджета по [com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData]
  */
 @Composable
 fun CoreWidget(

@@ -1,4 +1,4 @@
-package com.mynimef.workflowxcore.widgets.slider
+package com.mynimef.workflowxcore.widgets.impl.slider
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

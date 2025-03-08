@@ -1,4 +1,6 @@
-package com.mynimef.workflowxcore.widgets
+package com.mynimef.workflowxcore
+
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 sealed interface Action {
 

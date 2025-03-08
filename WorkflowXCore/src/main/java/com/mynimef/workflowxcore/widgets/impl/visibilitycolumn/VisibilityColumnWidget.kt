@@ -1,14 +1,14 @@
-package com.mynimef.workflowxcore.widgets.visibilitycolumn
+package com.mynimef.workflowxcore.widgets.impl.visibilitycolumn
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.CoreColumnWidget
 import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 @Composable
 fun VisibilityColumnWidget(

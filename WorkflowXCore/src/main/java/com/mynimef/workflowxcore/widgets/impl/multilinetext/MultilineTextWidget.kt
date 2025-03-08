@@ -1,4 +1,4 @@
-package com.mynimef.workflowxcore.widgets.multilinetext
+package com.mynimef.workflowxcore.widgets.impl.multilinetext
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text

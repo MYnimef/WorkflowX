@@ -1,4 +1,4 @@
-package com.mynimef.workflowxcore.widgets.spacer
+package com.mynimef.workflowxcore.widgets.impl.spacer
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

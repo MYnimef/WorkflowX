@@ -1,6 +1,7 @@
-package com.mynimef.workflowxcore.widgets.slider
+package com.mynimef.workflowxcore.widgets.impl.slider
 
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.ObservableWidget
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
@@ -13,7 +14,7 @@ import kotlinx.serialization.Transient
 data class SliderWidgetData(
     override val id: String,
     val value: Float
-): CoreWidgetData, com.mynimef.workflowxcore.widgets.CoreObservableWidget {
+): CoreWidgetData.Single, ObservableWidget {
 
     @Transient
     @IgnoredOnParcel

@@ -1,7 +1,7 @@
-package com.mynimef.workflowxcore.widgets.subscribe
+package com.mynimef.workflowxcore.widgets.impl.subscribe
 
 import android.os.Parcelable
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
@@ -17,12 +17,14 @@ import kotlinx.serialization.Transient
 data class SubscribeWidgetData(
     override val id: String,
     val targets: List<Target>,
-    val widget: CoreWidgetData
-): CoreWidgetData {
+    override val widget: CoreWidgetData
+): CoreWidgetData.Container {
 
     @Transient
     @IgnoredOnParcel
     override val type: String = TYPE
+
+    override fun copyWith(widget: CoreWidgetData) = copy(widget = widget)
 
     /**
      *

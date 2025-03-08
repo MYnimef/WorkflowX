@@ -1,4 +1,4 @@
-package com.mynimef.workflowxcore.widgets.modulecolumn
+package com.mynimef.workflowxcore.widgets.impl.modulecolumn
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.CoreColumnWidget
 import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 @Composable
 fun ModuleLazyColumnWidget(

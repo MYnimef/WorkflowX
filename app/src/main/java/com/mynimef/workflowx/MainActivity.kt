@@ -14,7 +14,7 @@ import com.mynimef.workflowx.ui.theme.WorkflowXTheme
 import com.mynimef.workflowxcore.CoreJsonDeserializer
 import com.mynimef.workflowxcore.screens.base.BaseScreen
 import com.mynimef.workflowxcore.screens.base.BaseScreenData
-import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
 
 class MainActivity : ComponentActivity() {
@@ -135,9 +135,29 @@ private val jsonStr = """
             "height": "8"
         },
         {
-            "type": "MultilineTextWidget",
+            "type": "SliderWidget",
             "id": "8",
-            "text": "о ком угодно"
+            "value": 0.25
+        },
+        {
+            "type": "SliderWidget",
+            "id": "9",
+            "value": 0.25
+        },
+        {
+            "type": "SliderWidget",
+            "id": "10",
+            "value": 0.25
+        },
+        {
+            "type": "SliderWidget",
+            "id": "11",
+            "value": 0.25
+        },
+        {
+            "type": "SliderWidget",
+            "id": "12",
+            "value": 0.25
         }
     ]
 }

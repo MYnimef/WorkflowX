@@ -3,16 +3,18 @@ package com.mynimef.workflowxcore.widgets
 import androidx.annotation.CallSuper
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.mynimef.workflowxcore.widgets.modulecolumn.ModuleColumnWidgetData
-import com.mynimef.workflowxcore.widgets.modulecolumn.ModuleLazyColumnWidget
-import com.mynimef.workflowxcore.widgets.multilinetext.MultilineTextWidget
-import com.mynimef.workflowxcore.widgets.multilinetext.MultilineTextWidgetData
-import com.mynimef.workflowxcore.widgets.slider.SliderWidget
-import com.mynimef.workflowxcore.widgets.slider.SliderWidgetData
-import com.mynimef.workflowxcore.widgets.spacer.SpacerWidget
-import com.mynimef.workflowxcore.widgets.spacer.SpacerWidgetData
-import com.mynimef.workflowxcore.widgets.subscribe.SubscribeStringWidget
-import com.mynimef.workflowxcore.widgets.subscribe.SubscribeWidgetData
+import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleColumnWidgetData
+import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleLazyColumnWidget
+import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidget
+import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidgetData
+import com.mynimef.workflowxcore.widgets.impl.slider.SliderWidget
+import com.mynimef.workflowxcore.widgets.impl.slider.SliderWidgetData
+import com.mynimef.workflowxcore.widgets.impl.spacer.SpacerWidget
+import com.mynimef.workflowxcore.widgets.impl.spacer.SpacerWidgetData
+import com.mynimef.workflowxcore.widgets.impl.subscribe.SubscribeStringWidget
+import com.mynimef.workflowxcore.widgets.impl.subscribe.SubscribeWidgetData
+import com.mynimef.workflowxcore.Action
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 /**
  *
@@ -42,12 +44,12 @@ open class CoreWidgetFactoryComposable {
         modifier: Modifier
     ) = when (type) {
 
-        MultilineTextWidgetData.TYPE -> MultilineTextWidget(
+        MultilineTextWidgetData.Companion.TYPE -> MultilineTextWidget(
             dataProvider = provider(),
             modifier = modifier
         )
 
-        ModuleColumnWidgetData.TYPE -> ModuleLazyColumnWidget(
+        ModuleColumnWidgetData.Companion.TYPE -> ModuleLazyColumnWidget(
             contentFactory = this@CoreWidgetFactoryComposable,
             dataProvider = provider(),
             onAction = onAction,
@@ -55,18 +57,18 @@ open class CoreWidgetFactoryComposable {
             modifier = modifier
         )
 
-        SliderWidgetData.TYPE -> SliderWidget(
+        SliderWidgetData.Companion.TYPE -> SliderWidget(
             dataProvider = provider(),
             onAction = onAction,
             modifier = modifier
         )
 
-        SpacerWidgetData.TYPE -> SpacerWidget(
+        SpacerWidgetData.Companion.TYPE -> SpacerWidget(
             dataProvider = provider(),
             modifier = modifier
         )
 
-        SubscribeWidgetData.TYPE -> SubscribeStringWidget(
+        SubscribeWidgetData.Companion.TYPE -> SubscribeStringWidget(
             contentFactory = this@CoreWidgetFactoryComposable,
             dataProvider = provider(),
             onAction = onAction,

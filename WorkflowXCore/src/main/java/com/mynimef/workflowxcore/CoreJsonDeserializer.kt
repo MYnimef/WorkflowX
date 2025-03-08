@@ -1,11 +1,11 @@
 package com.mynimef.workflowxcore
 
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
-import com.mynimef.workflowxcore.widgets.modulecolumn.ModuleColumnWidgetData
-import com.mynimef.workflowxcore.widgets.multilinetext.MultilineTextWidgetData
-import com.mynimef.workflowxcore.widgets.slider.SliderWidgetData
-import com.mynimef.workflowxcore.widgets.spacer.SpacerWidgetData
-import com.mynimef.workflowxcore.widgets.subscribe.SubscribeWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleColumnWidgetData
+import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidgetData
+import com.mynimef.workflowxcore.widgets.impl.slider.SliderWidgetData
+import com.mynimef.workflowxcore.widgets.impl.spacer.SpacerWidgetData
+import com.mynimef.workflowxcore.widgets.impl.subscribe.SubscribeWidgetData
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 

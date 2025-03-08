@@ -1,11 +1,11 @@
-package com.mynimef.workflowxcore.widgets.slider
+package com.mynimef.workflowxcore.widgets.impl.slider
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.Action
 
 @Composable
 fun SliderWidget(

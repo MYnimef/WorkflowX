@@ -1,9 +1,9 @@
-package com.mynimef.workflowxcore.widgets.modulecolumn
+package com.mynimef.workflowxcore.widgets.impl.modulecolumn
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
-import com.mynimef.workflowxcore.widgets.multilinetext.MultilineTextWidgetData
+import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidgetData
 
 @Preview
 @Composable

@@ -10,10 +10,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.mynimef.workflowxcore.widgets.Action
+import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.WidgetsLazyColumn
 import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
-import com.mynimef.workflowxcore.widgets.CoreWidgetData
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 import androidx.core.graphics.toColorInt
 
 @Composable

@@ -1,4 +1,4 @@
-package com.mynimef.workflowxcore.widgets.subscribe
+package com.mynimef.workflowxcore.widgets.impl.subscribe
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
