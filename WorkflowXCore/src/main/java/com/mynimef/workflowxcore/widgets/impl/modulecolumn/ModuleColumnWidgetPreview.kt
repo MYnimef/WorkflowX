@@ -21,10 +21,13 @@ private fun ModuleLazyColumnWidgetPreview() {
             )
         )
     )
+    /*
     ModuleLazyColumnWidget(
         contentFactory = CoreWidgetFactoryComposable(),
         dataProvider = { data },
         onAction = {},
-        widgetGetter = { null }
+        providerGetter = { () -> { data } }
     )
+
+     */
 }

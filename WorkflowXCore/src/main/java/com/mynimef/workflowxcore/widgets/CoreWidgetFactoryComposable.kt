@@ -2,6 +2,7 @@ package com.mynimef.workflowxcore.widgets
 
 import androidx.annotation.CallSuper
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleColumnWidgetData
 import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleLazyColumnWidget
@@ -24,12 +25,15 @@ open class CoreWidgetFactoryComposable {
     @Composable
     internal fun GetContent(
         type: String,
+        initialData: CoreWidgetData,
         dataProvider: () -> CoreWidgetData,
         onAction: (Action) -> Unit,
+        onWidgetChange: (CoreWidgetData) -> Unit,
         widgetGetter: (String) -> CoreWidgetData?,
         modifier: Modifier
     ) = dataProvider.GetContent(
         type = type,
+        initialData = initialData,
         onAction = onAction,
         widgetGetter = widgetGetter,
         modifier = modifier
@@ -39,6 +43,7 @@ open class CoreWidgetFactoryComposable {
     @Composable
     protected open fun (() -> CoreWidgetData).GetContent(
         type: String,
+        initialData: CoreWidgetData,
         onAction: (Action) -> Unit,
         widgetGetter: (String) -> CoreWidgetData?,
         modifier: Modifier
@@ -53,7 +58,7 @@ open class CoreWidgetFactoryComposable {
             contentFactory = this@CoreWidgetFactoryComposable,
             dataProvider = provider(),
             onAction = onAction,
-            widgetGetter = widgetGetter,
+            stateGetter = stateGetter,
             modifier = modifier
         )
 
@@ -72,7 +77,7 @@ open class CoreWidgetFactoryComposable {
             contentFactory = this@CoreWidgetFactoryComposable,
             dataProvider = provider(),
             onAction = onAction,
-            widgetGetter = widgetGetter,
+            stateGetter = stateGetter,
             modifier = modifier
         )
 

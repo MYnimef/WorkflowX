@@ -1,6 +1,7 @@
 package com.mynimef.workflowxcore.widgets
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -9,22 +10,30 @@ import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 /**
- * Базовая [Composable] функция отображения виджета по [com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData]
+ * Базовая [Composable] функция отображения виджета по [CoreWidgetData]
  */
 @Composable
 fun CoreWidget(
     contentFactory: CoreWidgetFactoryComposable,
-    dataProvider: () -> CoreWidgetData,
     onAction: (Action) -> Unit,
-    widgetGetter: (String) -> CoreWidgetData?,
-    modifier: Modifier = Modifier
+    initialData: CoreWidgetData,
+    stateGetter: (String) -> MutableState<CoreWidgetData>,
+    widgetState: MutableState<CoreWidgetData>
+    modifier: Modifier = Modifier,
+    dataProvider: () -> CoreWidgetData = { stateGetter(initialData.id).value }
 ) {
     val type by remember { derivedStateOf { dataProvider().type } }
     contentFactory.GetContent(
         type = type,
+        initialData = initialData,
         dataProvider = dataProvider,
         onAction = onAction,
-        widgetGetter = widgetGetter,
+        onWidgetChange = {
+
+        },
+        widgetGetter = { it ->
+            stateGetter(it).value
+        },
         modifier = modifier
     )
 }

@@ -19,6 +19,7 @@ fun VisibilityColumnWidget(
     modifier: Modifier = Modifier
 ) {
     val exp by remember { derivedStateOf { dataProvider().exp } }
+    /*
     if (exp.isNotBlank()) {
         val widgets by remember { derivedStateOf { dataProvider().widgets } }
         CoreColumnWidget(
@@ -28,4 +29,6 @@ fun VisibilityColumnWidget(
             widgetGetter = widgetGetter
         )
     }
+
+     */
 }

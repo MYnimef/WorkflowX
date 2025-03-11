@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -23,7 +24,7 @@ fun ModuleLazyColumnWidget(
     contentFactory: CoreWidgetFactoryComposable,
     dataProvider: () -> ModuleColumnWidgetData,
     onAction: (Action) -> Unit,
-    widgetGetter: (String) -> CoreWidgetData?,
+    stateGetter: (String) -> State<CoreWidgetData>,
     modifier: Modifier = Modifier
 ) = Box(
     modifier = modifier
@@ -35,8 +36,8 @@ fun ModuleLazyColumnWidget(
     val widgets by remember { derivedStateOf { dataProvider().widgets } }
     CoreColumnWidget(
         contentFactory = contentFactory,
-        widgetsProvider = { widgets },
+        widgets = widgets,
         onAction = onAction,
-        widgetGetter = widgetGetter
+        stateGetter = stateGetter
     )
 }
