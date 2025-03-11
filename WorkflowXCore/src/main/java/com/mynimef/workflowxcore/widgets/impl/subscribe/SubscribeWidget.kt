@@ -30,7 +30,7 @@ fun SubscribeStringWidget(
     val data = dataProvider()
     var widgetData by rememberSaveable { mutableStateOf(data.widget) }
     val widgetDataUpdated by remember { derivedStateOf {
-        var observer = stateGetter(widgetData.id).value
+        var observer = widgetData
         data.targets.forEach { target ->
             when (target.type) {
                 "string" -> {
