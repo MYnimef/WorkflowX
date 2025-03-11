@@ -1,10 +1,13 @@
 package com.mynimef.workflowxcore.widgets.impl.subscribe
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.CoreWidget
@@ -21,12 +24,13 @@ fun SubscribeStringWidget(
     contentFactory: CoreWidgetFactoryComposable,
     dataProvider: () -> SubscribeWidgetData,
     onAction: (Action) -> Unit,
-    stateGetter: (String) -> State<CoreWidgetData>,
+    stateGetter: (String) -> MutableState<CoreWidgetData>,
     modifier: Modifier = Modifier
 ) {
     val data = dataProvider()
-    val widgetData by remember { derivedStateOf {
-        var observer = stateGetter(data.widget.id).value
+    var widgetData by rememberSaveable { mutableStateOf(data.widget) }
+    val widgetDataUpdated by remember { derivedStateOf {
+        var observer = stateGetter(widgetData.id).value
         data.targets.forEach { target ->
             when (target.type) {
                 "string" -> {
@@ -41,10 +45,10 @@ fun SubscribeStringWidget(
 
     CoreWidget(
         contentFactory = contentFactory,
-        initialData = data.widget,
+        dataProvider = { widgetDataUpdated },
+        onDataChange = { widgetData = it },
         onAction = onAction,
         stateGetter = stateGetter,
-        dataProvider = { widgetData },
         modifier = modifier
     )
 }

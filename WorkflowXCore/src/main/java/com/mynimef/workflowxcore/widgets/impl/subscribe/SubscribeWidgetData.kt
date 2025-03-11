@@ -24,8 +24,6 @@ data class SubscribeWidgetData(
     @IgnoredOnParcel
     override val type: String = TYPE
 
-    override fun copyWith(widget: CoreWidgetData) = copy(widget = widget)
-
     /**
      *
      */

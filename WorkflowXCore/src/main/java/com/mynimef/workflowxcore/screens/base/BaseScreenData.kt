@@ -10,16 +10,4 @@ import kotlinx.serialization.Serializable
 data class BaseScreenData(
     val backgroundColor: String,
     val widgets: List<CoreWidgetData>
-): Parcelable {
-
-    fun findWidgetById(id: String): CoreWidgetData? = widgets.find {
-        it.findWidgetById(id) != null
-    }
-
-    fun replaceWidgetById(id: String, widget: CoreWidgetData) = this.copy(
-        widgets = widgets.map {
-            it.replaceWidgetById(id = id, widget = widget)
-        }
-    )
-
-}
+): Parcelable

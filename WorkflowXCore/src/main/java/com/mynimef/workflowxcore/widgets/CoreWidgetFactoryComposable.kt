@@ -2,8 +2,9 @@ package com.mynimef.workflowxcore.widgets
 
 import androidx.annotation.CallSuper
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleColumnWidgetData
 import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleLazyColumnWidget
 import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidget
@@ -14,7 +15,6 @@ import com.mynimef.workflowxcore.widgets.impl.spacer.SpacerWidget
 import com.mynimef.workflowxcore.widgets.impl.spacer.SpacerWidgetData
 import com.mynimef.workflowxcore.widgets.impl.subscribe.SubscribeStringWidget
 import com.mynimef.workflowxcore.widgets.impl.subscribe.SubscribeWidgetData
-import com.mynimef.workflowxcore.Action
 import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 /**
@@ -25,17 +25,16 @@ open class CoreWidgetFactoryComposable {
     @Composable
     internal fun GetContent(
         type: String,
-        initialData: CoreWidgetData,
         dataProvider: () -> CoreWidgetData,
         onAction: (Action) -> Unit,
         onWidgetChange: (CoreWidgetData) -> Unit,
-        widgetGetter: (String) -> CoreWidgetData?,
+        stateGetter: (String) -> MutableState<CoreWidgetData>,
         modifier: Modifier
     ) = dataProvider.GetContent(
         type = type,
-        initialData = initialData,
         onAction = onAction,
-        widgetGetter = widgetGetter,
+        onWidgetChange = onWidgetChange,
+        stateGetter = stateGetter,
         modifier = modifier
     )
 
@@ -43,9 +42,9 @@ open class CoreWidgetFactoryComposable {
     @Composable
     protected open fun (() -> CoreWidgetData).GetContent(
         type: String,
-        initialData: CoreWidgetData,
         onAction: (Action) -> Unit,
-        widgetGetter: (String) -> CoreWidgetData?,
+        onWidgetChange: (CoreWidgetData) -> Unit,
+        stateGetter: (String) -> MutableState<CoreWidgetData>,
         modifier: Modifier
     ) = when (type) {
 
@@ -64,6 +63,7 @@ open class CoreWidgetFactoryComposable {
 
         SliderWidgetData.Companion.TYPE -> SliderWidget(
             dataProvider = provider(),
+            onDataChange = onWidgetChange,
             onAction = onAction,
             modifier = modifier
         )

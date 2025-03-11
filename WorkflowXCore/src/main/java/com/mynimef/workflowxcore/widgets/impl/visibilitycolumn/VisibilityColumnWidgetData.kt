@@ -20,8 +20,6 @@ data class VisibilityColumnWidgetData(
     @IgnoredOnParcel
     override val type: String = TYPE
 
-    override fun copyWith(widgets: List<CoreWidgetData>) = copy(widgets = widgets)
-
     companion object {
         const val TYPE = "VisibilityColumnWidget"
     }

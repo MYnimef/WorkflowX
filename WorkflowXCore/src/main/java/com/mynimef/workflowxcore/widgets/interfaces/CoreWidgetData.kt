@@ -14,23 +14,7 @@ sealed interface CoreWidgetData : Parcelable {
     val type: String
 
     /** */
-    fun findWidgetById(id: String): CoreWidgetData?
-
-    /** */
-    fun replaceWidgetById(id: String, widget: CoreWidgetData): CoreWidgetData
-
-    /**
-     *
-     */
-    interface Single : CoreWidgetData {
-
-        override fun findWidgetById(id: String): CoreWidgetData? =
-            if (this.id == id) this else null
-
-        override fun replaceWidgetById(id: String, widget: CoreWidgetData): CoreWidgetData =
-            if (this.id == id) widget else this
-
-    }
+    interface Single : CoreWidgetData
 
     /**
      *
@@ -38,16 +22,6 @@ sealed interface CoreWidgetData : Parcelable {
     interface Container : CoreWidgetData {
 
         val widget: CoreWidgetData
-
-        fun copyWith(widget: CoreWidgetData): CoreWidgetData
-
-        override fun findWidgetById(id: String): CoreWidgetData? =
-            if (this.id == id) this else this.widget.findWidgetById(id = id)
-
-        override fun replaceWidgetById(id: String, widget: CoreWidgetData): CoreWidgetData =
-            if (this.id == id) widget else this.copyWith(
-                widget = this.widget.replaceWidgetById(id = id, widget = widget)
-            )
 
     }
 
@@ -57,20 +31,6 @@ sealed interface CoreWidgetData : Parcelable {
     interface Collection : CoreWidgetData {
 
         val widgets: List<CoreWidgetData>
-
-        fun copyWith(widgets: List<CoreWidgetData>): CoreWidgetData
-
-        override fun findWidgetById(id: String): CoreWidgetData? =
-            if (this.id == id) this else this.widgets.find {
-                it.findWidgetById(id) != null
-            }
-
-        override fun replaceWidgetById(id: String, widget: CoreWidgetData): CoreWidgetData =
-            if (this.id == id) widget else this.copyWith(
-                widgets = this.widgets.map {
-                    it.replaceWidgetById(id = id, widget = widget)
-                }
-            )
 
     }
 

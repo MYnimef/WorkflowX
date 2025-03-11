@@ -33,15 +33,8 @@ class MainActivity : ComponentActivity() {
                     contentFactory = CoreWidgetFactoryComposable(),
                     dataProvider = { data },
                     modifier = Modifier.fillMaxSize(),
-                    onAction = { when (it) {
+                    onAction = {
 
-                        is Action.ReplaceWidget -> {
-                            data = data.replaceWidgetById(id = it.id, widget = it.widget)
-                        }
-
-                    } },
-                    widgetGetter = { id ->
-                        data.findWidgetById(id)
                     }
                 )
             }

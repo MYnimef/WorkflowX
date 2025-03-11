@@ -8,9 +8,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.mynimef.workflowxcore.Action
-import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
 import com.mynimef.workflowxcore.CoreJsonDeserializer
+import com.mynimef.workflowxcore.widgets.CoreWidgetFactoryComposable
 import com.mynimef.workflowxcore.widgets.impl.modulecolumn.ModuleColumnWidgetData
 import com.mynimef.workflowxcore.widgets.impl.multilinetext.MultilineTextWidgetData
 import com.mynimef.workflowxcore.widgets.impl.slider.SliderWidgetData
@@ -69,15 +68,8 @@ private fun BaseScreenPreview() {
         contentFactory = CoreWidgetFactoryComposable(),
         dataProvider = { data },
         modifier = Modifier.fillMaxSize(),
-        onAction = { when (it) {
+        onAction = {
 
-            is Action.ReplaceWidget -> {
-                data = data.replaceWidgetById(id = it.id, widget = it.widget)
-            }
-
-        } },
-        widgetGetter = { id ->
-            data.findWidgetById(id)
         }
     )
 }
@@ -189,15 +181,6 @@ private fun BaseScreenJsonPreview() {
         contentFactory = CoreWidgetFactoryComposable(),
         dataProvider = { data },
         modifier = Modifier.fillMaxSize(),
-        onAction = { when (it) {
-
-            is Action.ReplaceWidget -> {
-                data = data.replaceWidgetById(id = it.id, widget = it.widget)
-            }
-
-        } },
-        widgetGetter = { id ->
-            data.findWidgetById(id)
-        }
+        onAction = {  }
     )
 }

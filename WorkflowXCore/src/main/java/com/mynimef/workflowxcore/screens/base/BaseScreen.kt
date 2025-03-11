@@ -24,44 +24,40 @@ fun BaseScreen(
     contentFactory: CoreWidgetFactoryComposable,
     dataProvider: () -> BaseScreenData,
     onAction: (Action) -> Unit,
-    widgetGetter: (String) -> CoreWidgetData?,
     modifier: Modifier = Modifier
-) = Scaffold(
-    modifier = modifier
-        .fillMaxSize()
-    ,
-    topBar = {
-
-    },
-    bottomBar = {
-
-    }
-) { padding ->
-    val backgroundColor by remember { derivedStateOf { dataProvider().backgroundColor.toColorInt() } }
-    val widgetsMap = dataProvider().widgets.extractMap()
+) {
     val widgets by remember { derivedStateOf { dataProvider().widgets } }
+    val widgetsMap = widgets.extractMap()
 
-    WidgetsLazyColumn(
-        contentFactory = contentFactory,
+    Scaffold(
         modifier = modifier
-            .padding(padding)
-            .fillMaxSize()
-            .background(color = Color(backgroundColor))
-        ,
-        widgets = widgets,
-        onAction = {
-            when (it) {
-                is Action.ReplaceWidget -> widgetsMap[it.id]?.value = it.widget
-            }
+            .fillMaxSize(),
+        topBar = {
+
         },
-        stateGetter = { id ->
-            widgetsMap.getValue(id)
+        bottomBar = {
+
         }
-    )
+    ) { padding ->
+        val backgroundColor by remember { derivedStateOf { dataProvider().backgroundColor.toColorInt() } }
+
+        WidgetsLazyColumn(
+            contentFactory = contentFactory,
+            modifier = modifier
+                .padding(padding)
+                .fillMaxSize()
+                .background(color = Color(backgroundColor)),
+            widgets = widgets,
+            onAction = onAction,
+            stateGetter = { id ->
+                widgetsMap.getValue(id)
+            }
+        )
+    }
 }
 
 @Composable
-private fun List<CoreWidgetData>.extractMap(): MutableMap<String, MutableState<CoreWidgetData>> {
+private fun List<CoreWidgetData>.extractMap(): Map<String, MutableState<CoreWidgetData>> {
     val map = mutableMapOf<String, MutableState<CoreWidgetData>>()
     this.forEach { widget ->
         map[widget.id] = rememberSaveable { mutableStateOf(widget) }

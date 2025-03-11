@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +21,7 @@ fun WidgetsLazyColumn(
     contentFactory: CoreWidgetFactoryComposable,
     widgets: List<CoreWidgetData>,
     onAction: (Action) -> Unit,
-    stateGetter: (String) -> State<CoreWidgetData>,
+    stateGetter: (String) -> MutableState<CoreWidgetData>,
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
@@ -41,7 +42,7 @@ fun WidgetsLazyColumn(
             CoreWidget(
                 contentFactory = contentFactory,
                 onAction = onAction,
-                initialData = widget,
+                data = widget,
                 stateGetter = stateGetter,
                 modifier = Modifier
                     .fillMaxWidth()

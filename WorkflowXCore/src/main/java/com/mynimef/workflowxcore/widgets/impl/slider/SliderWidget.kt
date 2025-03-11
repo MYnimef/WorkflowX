@@ -6,10 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mynimef.workflowxcore.Action
+import com.mynimef.workflowxcore.widgets.interfaces.CoreWidgetData
 
 @Composable
 fun SliderWidget(
     dataProvider: () -> SliderWidgetData,
+    onDataChange: (CoreWidgetData) -> Unit,
     onAction: (Action) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -20,7 +22,7 @@ fun SliderWidget(
         ,
         value = data.value,
         onValueChange = {
-            onAction(Action.ReplaceWidget(id = data.id, data.copy(value = it)))
+            onDataChange(data.copy(value = it))
         }
     )
 }
